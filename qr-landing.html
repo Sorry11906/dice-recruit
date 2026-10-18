@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>骗你的啦（★星星眼）</title>
+<style>
+  :root{ --bg:#140b1d; --badge-a:#41245f; --badge-b:#251439; --edge:#c9a0ff; --ink:#f4eef9; }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;display:grid;place-items:center;overflow:hidden;
+    background:radial-gradient(900px 620px at 50% 42%,#2b1745 0%,var(--bg) 62%) fixed;
+    color:var(--ink);
+    font-family:"Noto Serif SC","Songti SC","Source Han Serif SC",serif;
+  }
+  .stage{ text-align:center; animation:rise .85s cubic-bezier(.2,1.32,.4,1) both; }
+
+  /* 徽章：外层做描边色，内层 inset 4px 做渐变 —— 这样 clip-path 切的是两层，
+     边框不会被一起切掉（之前单层 + border 会被裁掉左右两条边）。 */
+  .badge{
+    position:relative;width:168px;height:186px;margin:0 auto 30px;
+    filter:drop-shadow(0 0 34px rgba(155,109,255,.62));
+    animation:float 5.5s ease-in-out infinite;
+  }
+  .badge::before,.badge::after{
+    content:"";position:absolute;inset:0;
+    clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  }
+  .badge::before{ background:var(--edge); }
+  .badge::after{ inset:4px; background:linear-gradient(158deg,var(--badge-a),var(--badge-b)); }
+  .badge span{
+    position:absolute;inset:0;display:grid;place-items:center;z-index:2;
+    font-size:27px;font-weight:700;letter-spacing:.18em;
+    color:#e9d9ff;text-shadow:0 0 18px rgba(201,160,255,.75);
+  }
+
+  h1{
+    margin:0 0 14px;font-size:42px;letter-spacing:.06em;font-weight:600;
+    text-shadow:0 0 30px rgba(155,109,255,.45);
+  }
+  h1 .eye{
+    color:#c9a0ff;white-space:nowrap;
+    animation:blink 1.6s ease-in-out infinite;
+  }
+  .sub{ margin:0;font-size:13px;letter-spacing:.62em;color:#a894c0;text-indent:.62em; }
+
+  @keyframes rise{ 0%{opacity:0;transform:translateY(26px) scale(.94)} 100%{opacity:1;transform:none} }
+  @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+  @keyframes blink{ 0%,100%{opacity:1} 45%,55%{opacity:.42} }
+
+  @media (max-width:520px){
+    .badge{width:132px;height:146px}
+    .badge span{font-size:22px}
+    h1{font-size:29px}
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="badge"><span>DICE</span></div>
+    <h1>骗你的啦 <span class="eye">（★星星眼）</span></h1>
+    <p class="sub">D I C E</p>
+  </div>
+</body>
+</html>
