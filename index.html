@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DICE 招募｜骗你的啦（★星星眼）</title>
+<style>
+:root{
+  --bg:#120a19; --bg2:#1c1029; --panel:#231433; --line:#3d2559;
+  --panta:#9b6dff; --panta-soft:#c9a0ff; --ink:#f2ecf8; --dim:#a894c0;
+  --cream:#f7f2fb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:radial-gradient(1200px 700px at 15% -8%,#2a1740 0%,var(--bg) 55%) fixed;
+  color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","Source Han Serif SC",serif;
+  line-height:1.85;letter-spacing:.02em;
+}
+a{color:var(--panta-soft)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 100px}
+
+/* ── 顶栏：二维码在左上角 ── */
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(18,10,25,.94),rgba(18,10,25,.72));
+  border-bottom:1px solid var(--line);
+}
+.top{display:flex;align-items:center;gap:26px;max-width:1000px;margin:0 auto;padding:16px 22px}
+.qrbox{
+  flex:0 0 auto;width:170px;height:170px;padding:6px;border-radius:12px;
+  background:var(--cream);border:2px solid var(--panta);
+  box-shadow:0 0 26px rgba(155,109,255,.42);
+  transition:transform .35s cubic-bezier(.2,1.4,.4,1),box-shadow .35s;
+}
+.qrbox:hover{transform:scale(1.07) rotate(-2deg);box-shadow:0 0 40px rgba(201,160,255,.75)}
+.qrbox img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.qrhint{font-size:12px;color:var(--dim);letter-spacing:.06em;margin-top:6px;text-align:center}
+.brand{flex:1 1 auto;min-width:0}
+.brand h1{margin:0;font-size:26px;letter-spacing:.14em;line-height:1.25}
+.brand h1 .eye{color:var(--panta-soft);animation:blink 2.6s ease-in-out infinite}
+.brand p{margin:6px 0 0;font-size:12.5px;color:var(--dim);letter-spacing:.22em}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.32}}
+
+/* ── 导航 ── */
+nav{max-width:1000px;margin:0 auto;padding:0 22px 12px;display:flex;flex-wrap:wrap;gap:8px}
+nav a{
+  font-size:12.5px;text-decoration:none;color:var(--dim);
+  border:1px solid var(--line);padding:5px 12px;border-radius:999px;
+  transition:.25s;background:rgba(35,20,51,.5)
+}
+nav a:hover{color:var(--panta-soft);border-color:var(--panta);background:rgba(155,109,255,.14)}
+
+/* ── 章节 ── */
+section{margin-top:64px;scroll-margin-top:150px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.sec-no{
+  font-size:12px;letter-spacing:.3em;color:var(--panta);
+  border:1px solid var(--line);padding:3px 10px;border-radius:6px;flex:0 0 auto
+}
+.sec-head h2{margin:0;font-size:23px;letter-spacing:.1em;font-weight:600}
+.sec-head .sub{font-size:12.5px;color:var(--dim);margin-left:auto;letter-spacing:.08em}
+
+.card{
+  background:linear-gradient(160deg,var(--panel),var(--bg2));
+  border:1px solid var(--line);border-radius:16px;padding:26px 28px;
+}
+.card + .card{margin-top:16px}
+
+ol.rules{list-style:none;counter-reset:r;padding:0;margin:0}
+ol.rules li{
+  counter-increment:r;position:relative;padding:13px 0 13px 46px;
+  border-bottom:1px dashed rgba(61,37,89,.75)
+}
+ol.rules li:last-child{border-bottom:0}
+ol.rules li::before{
+  content:counter(r);position:absolute;left:0;top:13px;
+  width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--panta-soft);font-size:13px;
+  background:rgba(155,109,255,.09)
+}
+ol.rules li b{color:var(--cream)}
+ol.rules li em{color:var(--dim);font-style:normal}
+
+/* 恶作剧 */
+.tricks{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.trick{
+  background:linear-gradient(160deg,var(--panel),var(--bg2));
+  border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  transition:.3s;position:relative;overflow:hidden
+}
+.trick::after{
+  content:"";position:absolute;inset:0;opacity:0;transition:.35s;
+  background:radial-gradient(220px 120px at 10% 0%,rgba(155,109,255,.22),transparent 70%)
+}
+.trick:hover{transform:translateY(-3px);border-color:var(--panta)}
+.trick:hover::after{opacity:1}
+.trick h3{margin:0 0 8px;font-size:16px;color:var(--cream);letter-spacing:.08em}
+.trick h3 span{color:var(--panta);margin-right:9px;font-size:13px}
+.trick p{margin:0;font-size:13.5px;color:var(--dim);line-height:1.8}
+
+/* IQ */
+.quiz .q{padding:16px 0;border-bottom:1px dashed rgba(61,37,89,.75)}
+.quiz .q:last-of-type{border-bottom:0}
+.quiz .q h3{margin:0 0 8px;font-size:15.5px;color:var(--cream)}
+.quiz .q p{margin:0;font-size:13.5px;color:var(--dim)}
+.quiz .q .ans{
+  margin-top:9px;padding:11px 14px;border-left:2px solid var(--panta);
+  background:rgba(155,109,255,.07);border-radius:0 8px 8px 0;
+  font-size:13.5px;color:var(--ink);cursor:pointer;user-select:none
+}
+.quiz .q .ans[data-hide="1"]{color:transparent;text-shadow:0 0 11px rgba(242,236,248,.85)}
+.quiz .q .ans[data-hide="1"]::after{
+  content:"（点一下看答案）";color:var(--dim);text-shadow:none;font-size:12px
+}
+.score{
+  margin-top:18px;padding:14px 18px;border-radius:12px;text-align:center;
+  border:1px dashed var(--line);color:var(--panta-soft);font-size:14px;letter-spacing:.1em
+}
+
+/* 招募 */
+.req li{margin:9px 0}
+.req{margin:0;padding-left:20px}
+.req li::marker{color:var(--panta)}
+
+/* 人数看板 */
+.counter{
+  margin-top:18px;padding:20px;border-radius:14px;text-align:center;
+  border:1px solid var(--line);background:rgba(155,109,255,.06)
+}
+.counter .n{
+  font-size:44px;letter-spacing:.06em;color:var(--cream);
+  font-variant-numeric:tabular-nums;text-shadow:0 0 26px rgba(155,109,255,.6)
+}
+.counter .lb{font-size:12px;color:var(--dim);letter-spacing:.3em;margin-top:4px}
+
+/* FAQ */
+details{border-bottom:1px dashed rgba(61,37,89,.75);padding:12px 0}
+details:last-of-type{border-bottom:0}
+summary{cursor:pointer;font-size:14.5px;color:var(--cream);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q　";color:var(--panta)}
+details p{margin:9px 0 0;font-size:13.5px;color:var(--dim)}
+
+/* 徽章 / 彩蛋 */
+.badge{
+  width:150px;height:150px;margin:0 auto;cursor:pointer;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:linear-gradient(160deg,#3b2157,#241338);
+  border:0;display:grid;place-items:center;
+  font-size:25px;font-weight:bold;letter-spacing:.1em;color:#e6d4ff;
+  box-shadow:0 0 46px rgba(155,109,255,.5);transition:transform .3s
+}
+.badge:hover{transform:scale(1.05) rotate(-3deg)}
+.badgewrap{padding:10px;text-align:center}
+#egg{
+  margin-top:16px;font-size:15px;color:var(--panta-soft);letter-spacing:.1em;
+  opacity:0;transition:opacity .5s;min-height:24px
+}
+#egg.on{opacity:1}
+
+/* 页脚 */
+footer{
+  margin-top:80px;padding-top:26px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--dim);text-align:center;line-height:2
+}
+footer a{color:var(--panta-soft);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* 入场 */
+.fade{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.fade.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <div>
+      <div class="qrbox"><img src="data:image/png;base64,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" alt="扫码：骗你的啦（★星星眼）"></div>
+      <div class="qrhint">扫　我</div>
+    </div>
+    <div class="brand">
+      <h1>D I C E <span class="eye">（★星星眼）</span></h1>
+      <p>邪恶秘密结社　·　成员一万人以上　·　招募中</p>
+    </div>
+  </div>
+  <nav>
+    <a href="#rules">准则</a>
+    <a href="#creed">首领的教条</a>
+    <a href="#tricks">恶作剧大全</a>
+    <a href="#iq">IQ 测试</a>
+    <a href="#join">招募要求</a>
+    <a href="#more">其他</a>
+    <a href="#contact">投递</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- 0 -->
+  <section id="top" class="fade" style="margin-top:46px">
+    <div class="badgewrap">
+      <div class="badge" id="badge">DICE</div>
+      <div id="egg"></div>
+    </div>
+    <div class="card" style="margin-top:26px;text-align:center">
+      <p style="margin:0;font-size:15px">我们是一个宗旨明确、纪律松散、成员多到统计不过来的组织。</p>
+      <p style="margin:10px 0 0;color:var(--dim);font-size:13.5px">
+        本站内容由首领亲自口述。他说的话有百分之五十是真的 —— 哪一半，你自己找。
+      </p>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section id="rules" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">壹</span>
+      <h2>DICE 准则</h2>
+      <span class="sub">六条 · 只有第一条是硬规定</span>
+    </div>
+    <div class="card">
+      <ol class="rules">
+        <li><b>不杀人。</b><em>—— 这条是真的，真的哦。</em></li>
+        <li><b>恶作剧必须好笑。</b><em>把人弄哭的那种不叫恶作剧，叫欺负人。</em></li>
+        <li><b>被抓到就承认。</b><em>承认的时候顺便再骗他一次。</em></li>
+        <li><b>不用真名。</b><em>名字是留给别人审判的，我们不做那个。</em></li>
+        <li><b>要骗就骗比你聪明的人。</b><em>骗蠢人没有成就感，还显得没本事。</em></li>
+        <li><b>同伴落难时不许跑</b><em>……除非跑的那个，能跑回来把所有人捞出去。</em></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="creed" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">贰</span>
+      <h2>首领的教条</h2>
+      <span class="sub">五条 · 和上面那六条没关系，别去对</span>
+    </div>
+    <div class="card">
+      <ol class="rules">
+        <li><b>我说的话百分之五十是真的。</b><em>哪一半是真的，你自己找。</em></li>
+        <li><b>你们可以对我撒谎。</b><em>但要撒得比我漂亮，不然我会不高兴。</em></li>
+        <li><b>有问题就举手。</b><em>举了我也不一定答。</em></li>
+        <li><b>不许相信任何人 —— 包括我。</b><em>特别是包括我。</em></li>
+        <li><b>我不记仇。</b><em>我只是把每个人的账都记下来了。</em></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="tricks" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">叁</span>
+      <h2>恶作剧大全</h2>
+      <span class="sub">六则 · 都能真做，都不伤人</span>
+    </div>
+    <div class="tricks">
+      <div class="trick"><h3><span>01</span>双鞋记</h3><p>趁他系完鞋带，把他两只鞋的鞋带系在一起，坐回原位，看他要几秒才反应过来。</p></div>
+      <div class="trick"><h3><span>02</span>无人的问候</h3><p>和陌生人一起坐电梯，对着没人的角落说一句「早上好」，然后正常走出去。</p></div>
+      <div class="trick"><h3><span>03</span>中奖通知</h3><p>给朋友发「恭喜您被抽中一等奖」，等他激动地打来电话，你慢慢说：是我发的，骗你的。</p></div>
+      <div class="trick"><h3><span>04</span>后半夜的歌</h3><p>把他手机闹钟全改成凌晨三点，名字写「你被盯上了」，再统一换成同一首童谣。</p></div>
+      <div class="trick"><h3><span>05</span>有脸的橘子</h3><p>用马克笔在橘子上画一张很丑的脸，摆在他桌上，看他什么时候发现它在盯着他。</p></div>
+      <div class="trick"><h3><span>06</span>慢性子</h3><p>把同事鼠标速度调到最慢，然后郑重地说他电脑可能中毒了，帮他「清理」。</p></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="iq" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">肆</span>
+      <h2>IQ 测试</h2>
+      <span class="sub">四道 · 答案都是骗人的</span>
+    </div>
+    <div class="card quiz">
+      <div class="q">
+        <h3>Q1　什么东西越洗越脏？</h3>
+        <p>标准答案是水。</p>
+        <div class="ans" data-hide="1">我们的答案：你的手。洗东西的时候，最脏的从来不是东西。</div>
+      </div>
+      <div class="q">
+        <h3>Q2　1 + 1 等于几？</h3>
+        <div class="ans" data-hide="1">答案栏：你想要多少？谈得成，可以是任何数。</div>
+      </div>
+      <div class="q">
+        <h3>Q3　一个人站在镜子前，镜子里为什么没有他？</h3>
+        <div class="ans" data-hide="1">因为他根本没站在镜子前。这题一半是「镜子」，一半是「你以为」。</div>
+      </div>
+      <div class="q">
+        <h3>Q4　本页面藏着一处骗局，请找出来。</h3>
+        <div class="ans" data-hide="1">从你扫码那一刻你就找到了。整页都是。</div>
+      </div>
+      <div class="score">评分：全错 ＝ 及格　　全对 ＝ 劝你别来</div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="join" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">伍</span>
+      <h2>招募要求</h2>
+      <span class="sub">门槛很低 · 面试会骗你</span>
+    </div>
+    <div class="card">
+      <ul class="req">
+        <li>年龄不限。这行不太需要年龄。</li>
+        <li>会笑。笑得出来就行，好不好看无所谓。</li>
+        <li>能接受被自己人骗，而且不会记仇。</li>
+        <li>会保守秘密 —— 尤其是那些根本不存在的秘密。</li>
+        <li>不需要才能。才能是那种靠规矩吃饭的地方要的，我们要的是胆子。</li>
+        <li>编号 <b style="color:var(--cream)">10001</b> 已为你预留。本组织实际成员一万人以上。……嗯，一万以上。就这样，别问。</li>
+      </ul>
+      <div class="counter">
+        <div class="n" id="counter">10,001</div>
+        <div class="lb">实 时 成 员 数</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="more" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">陆</span>
+      <h2>支部 · 流程 · 其他</h2>
+      <span class="sub">都在这儿，不用再问了</span>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px;font-size:16px;color:var(--cream);letter-spacing:.1em">支部</h3>
+      <ul class="req">
+        <li>地下洗衣店（巴黎）</li>
+        <li>自动贩卖机旁（大阪）</li>
+        <li>一头骆驼的右边（开罗）</li>
+        <li>你学校后面的长椅（<span style="color:var(--panta-soft)">这个不许去</span>）</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px;font-size:16px;color:var(--cream);letter-spacing:.1em">入职流程</h3>
+      <p style="margin:0;font-size:14px">
+        填表 → 面试 → <span style="color:var(--panta-soft)">面试官骗你</span> → 你看穿 → 恭喜，你被录取了。<br>
+        <span style="color:var(--dim);font-size:13px">（看不穿也录取，我们缺人。）</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px;font-size:16px;color:var(--cream);letter-spacing:.1em">退社方式</h3>
+      <p style="margin:0;font-size:14px">没有。我们这儿只有「<span style="color:var(--panta-soft)">暂时离开</span>」。</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px;font-size:16px;color:var(--cream);letter-spacing:.1em">首领</h3>
+      <p style="margin:0;font-size:14px">
+        超高校级的首脑，17 岁，156cm，围巾。<br>
+        <span style="color:var(--dim);font-size:13px">其余资料全是编的。</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px;font-size:16px;color:var(--cream);letter-spacing:.1em">FAQ</h3>
+      <details><summary>组织真的有一万人吗？</summary><p>真的。</p></details>
+      <details><summary>真的吗？</summary><p>真的。</p></details>
+      <details><summary>骗人呢？</summary><p>骗你的哦。</p></details>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="contact" class="fade">
+    <div class="sec-head">
+      <span class="sec-no">柒</span>
+      <h2>投递</h2>
+      <span class="sub">写信给我们 · 我们不一定会回</span>
+    </div>
+    <div class="card" style="text-align:center">
+      <p style="margin:0 0 14px;font-size:14px;color:var(--dim)">把你的编号、或者一句谎话，寄到：</p>
+      <p style="margin:0;font-size:21px;letter-spacing:.04em">
+        <a href="mailto:2167278093@qq.com" style="text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px">2167278093@qq.com</a>
+      </p>
+      <p style="margin:16px 0 0;font-size:12.5px;color:var(--dim)">
+        标题请写「DICE 应募」。写「应聘」也行 —— 反正我们都会当没看见一次。
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0 0 6px">本页面内容仅供娱乐，不构成任何真实承诺。</p>
+    <p style="margin:0 0 6px">DICE 不是真实组织。……大概。</p>
+    <p style="margin:14px 0 0;opacity:.7">© DICE　·　首领口述　·　骗你的啦（★星星眼）</p>
+  </footer>
+
+</div>
+
+<script>
+// 点击显示 IQ 答案
+document.querySelectorAll('.ans[data-hide]').forEach(function (el) {
+  el.addEventListener('click', function () { el.removeAttribute('data-hide'); });
+});
+
+// 人数看板：一直往上跳，但永远停在 10,001
+(function () {
+  var el = document.getElementById('counter');
+  var target = 10001;
+  var cur = 9994;
+  function tick() {
+    cur += 1;
+    if (cur > target) cur = 9995;
+    el.textContent = cur.toLocaleString('en-US');
+    setTimeout(tick, cur >= target ? 4200 : 180 + Math.random() * 260);
+  }
+  setTimeout(tick, 900);
+})();
+
+// 彩蛋：点徽章三次
+(function () {
+  var badge = document.getElementById('badge');
+  var egg = document.getElementById('egg');
+  var n = 0;
+  badge.addEventListener('click', function () {
+    n += 1;
+    if (n < 3) {
+      egg.textContent = n === 1 ? '……' : '……你还要点？';
+      egg.classList.add('on');
+      return;
+    }
+    egg.textContent = '你已经被录取了，明天来上班。';
+    egg.classList.add('on');
+    badge.style.transform = 'scale(1.14) rotate(6deg)';
+    setTimeout(function () { badge.style.transform = ''; }, 700);
+  });
+})();
+
+// 滚动入场
+(function () {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
